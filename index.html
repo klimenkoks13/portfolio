@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Аня Шуйская — Product & UX/UI Designer</title>
+  <meta name="description" content="Аня Шуйская — продуктовый UI/UX-дизайнер в сфере B2C и B2E.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div class="site-header-bg" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a href="#top" class="logo">Аня Шуйская</a>
+
+    <nav class="nav" id="site-nav" aria-label="Основная навигация">
+      <a href="#top" class="nav__link is-active" data-section="top">Главная</a>
+      <a href="#about" class="nav__link" data-section="about">Обо мне</a>
+      <a href="#projects" class="nav__link" data-section="projects">Проекты</a>
+      <a href="#concepts" class="nav__link" data-section="concepts">Концепты</a>
+      <a href="#contacts" class="nav__link" data-section="contacts">Контакты</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="assets/cv-anna-shuiskaya.pdf" class="btn-cv" target="_blank" rel="noopener" aria-label="Смотреть CV">
+        <span class="btn-cv__full">Смотреть CV</span>
+        <span class="btn-cv__short" aria-hidden="true">CV</span>
+      </a>
+
+      <button type="button" class="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <svg class="burger__icon burger__icon--open" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="burger__icon burger__icon--close" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Фиксированный градиент снизу экрана (только мобильная версия) -->
+  <div class="site-footer-fade" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- Hero -->
+    <section id="top" class="hero section" data-section="top">
+      <!-- Сцена 1440×960 масштабируется целиком: фигуры, текст и фото не смещаются друг относительно друга -->
+      <div class="hero__stage">
+        <h1 class="hero__title">
+          Product &amp; UI/UX<br>Designer creating
+        </h1>
+        <img class="hero__shape hero__shape--asterisk" src="assets/shape-asterisk.png" alt="" aria-hidden="true">
+        <img class="hero__shape hero__shape--flower" src="assets/shape-flower.png" alt="" aria-hidden="true">
+        <img class="hero__figure" src="assets/hero-woman.png" alt="Аня Шуйская с ноутбуком">
+      </div>
+    </section>
+
+    <!-- Обо мне -->
+    <section id="about" class="about section" data-section="about">
+      <div class="container about__grid">
+        <h2 class="heading">Обо мне</h2>
+        <div class="about__text">
+          <p class="about__lead">
+            Привет, меня зовут <span class="accent">Аня Шуйская,</span>
+            я продуктовый UI/UX-дизайнер в сфере B2C, B2E
+          </p>
+          <p>
+            Работаю в доменах travel, Media&amp;Entertainment, E-commerce, AI-продукты. Работала с мобильными сервисами, сайтами (IOS, Android, Web). Прорабатываю пользовательские сценарии, информационную архитектуру и интерфейсы, сопровождая продукт от исследования до передачи в разработку.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Проекты -->
+    <section id="projects" class="projects section" data-section="projects">
+      <div class="container">
+        <h2 class="heading">Опыт и проекты</h2>
+
+        <div class="projects__grid">
+          <article class="project">
+            <a href="case-hotel-booking.html" class="media media--square">
+              <img src="assets/hotel-booking.png" alt="Экраны приложения бронирования отелей">
+            </a>
+            <h3 class="project__title"><a href="case-hotel-booking.html">Бронирование отелей с умным помощником</a></h3>
+            <ul class="tags">
+              <li class="tag">B2C</li>
+              <li class="tag">Mobile iOS</li>
+              <li class="tag">2026</li>
+            </ul>
+          </article>
+
+          <article class="project">
+            <a href="#" class="media media--square media--wip">
+              <img src="assets/wip-project.png" alt="Проект в разработке">
+            </a>
+            <h3 class="project__title">Единая база документации с AI-функциями</h3>
+            <ul class="tags">
+              <li class="tag">B2E</li>
+              <li class="tag">Web app</li>
+              <li class="tag">2026</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Концепты -->
+    <section id="concepts" class="concepts section" data-section="concepts">
+      <div class="container">
+        <h2 class="heading heading--sub">Концепты</h2>
+
+        <div class="concepts__grid">
+          <div class="concepts__col">
+            <figure class="concept">
+              <div class="media media--tall">
+                <img src="assets/concept-streaming-dragon.png" alt="Концепт стриминг-приложения, карточка сериала">
+                <span class="media__label">Streaming app</span>
+              </div>
+            </figure>
+            <figure class="concept">
+              <div class="media media--square">
+                <img src="assets/concept-travel.png" alt="Концепт приложения для покупки авиабилетов">
+                <span class="media__label">Travel app</span>
+              </div>
+            </figure>
+          </div>
+
+          <div class="concepts__col">
+            <figure class="concept">
+              <div class="media media--square">
+                <img src="assets/concept-news.png" alt="Концепт новостного приложения, лента блогов">
+                <span class="media__label media__label--dark">News app</span>
+              </div>
+            </figure>
+            <figure class="concept">
+              <div class="media media--tall">
+                <img src="assets/concept-streaming-party.png" alt="Концепт приложения для совместного просмотра">
+                <span class="media__label">Streaming app</span>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contacts section" data-section="contacts">
+      <div class="container contacts__grid">
+        <div>
+          <h2 class="heading heading--small">Контакты</h2>
+          <ul class="contacts__list">
+            <li><a href="https://t.me/" target="_blank" rel="noopener">Телеграм личный</a></li>
+            <li><a href="mailto:berrtizzz@mail.ru">berrtizzz@mail.ru</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="heading heading--small">Соцсети</h2>
+          <ul class="contacts__list">
+            <li><a href="https://t.me/" target="_blank" rel="noopener">Телеграм канал</a></li>
+            <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">Linkedin</a></li>
+            <li><a href="https://dribbble.com/" target="_blank" rel="noopener">Dribbble</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

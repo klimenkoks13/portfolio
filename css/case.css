@@ -1,0 +1,348 @@
+/* ==========================================================================
+   Страница кейса «Бронирование отелей с умным помощником»
+   Сетка: контейнер 1312, две колонки по 642, gap 28, между блоками 120
+   ========================================================================== */
+
+:root {
+  --orange: #ff6a00;
+  --block-gap: 120px;
+  --col-gap: 28px;
+}
+
+/* ---------- Шапка: «Назад» / навигация / «Скачать CV» ---------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 56px;
+  padding: 0 28px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  font-size: 16px;
+  letter-spacing: -0.08px;
+  white-space: nowrap;
+  color: var(--text);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pill--back {
+  padding-left: 24px;
+}
+
+.pill__chevron {
+  flex: none;
+}
+
+/* ---------- Заголовок кейса ---------- */
+
+.case-hero {
+  padding-top: 150px;
+}
+
+.case-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.12px;
+  text-align: center;
+}
+
+.case-title__line {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.case-title__icon {
+  width: 50px;
+  height: 54px;
+  flex: none;
+  object-fit: contain;
+  transform: translateY(-4px);
+}
+
+.tags--center {
+  margin-top: 24px;
+  justify-content: center;
+}
+
+.case-hero .container {
+  margin-top: 52px;
+}
+
+/* ---------- Блоки ---------- */
+
+.case-section {
+  padding-top: var(--block-gap);
+}
+
+.case-hero + .case-section {
+  padding-top: var(--block-gap);
+}
+
+.case-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--col-gap);
+  align-items: start;
+}
+
+.heading--tall {
+  line-height: 48px;
+}
+
+.case-split__text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.case-lead {
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -0.085px;
+  color: var(--text);
+}
+
+.case-body {
+  font-size: 24px;
+  line-height: 34px;
+  color: var(--text-muted);
+}
+
+/* Блок «Процесс»: ряд из 7 логотипов конкурентов */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 19.22px;
+  margin-top: 18px; /* 24 + 18 = 42, как в макете */
+}
+
+.swatch {
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--card); /* белая подложка, 4% */
+}
+
+.swatch img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Блок «Визуал»: ряд из 7 иконок 80×80 на белой подложке 4% */
+.icon-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.icon-tile {
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  border-radius: 24px;
+  background: var(--card); /* белый, 4% */
+}
+
+.icon-tile img {
+  display: block;
+  height: auto;
+}
+
+/* ---------- Карточки с экранами (заглушки) ---------- */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.card--tall {
+  aspect-ratio: 642 / 779;
+}
+
+.card--wide {
+  aspect-ratio: 1312 / 851;
+}
+
+.card--process {
+  margin-top: var(--block-gap);
+}
+
+.card--collage {
+  aspect-ratio: 1312 / 865;
+}
+
+.case-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--col-gap);
+  margin-top: var(--block-gap);
+}
+
+.case-split + .card,
+.case-split + .case-pair {
+  margin-top: var(--block-gap);
+}
+
+.card--process + .case-pair {
+  margin-top: var(--col-gap);
+}
+
+/* Заглушка экрана телефона. Замените <div class="shot …"> на <img>. */
+.shot {
+  border-radius: 9% / 4.5%;
+  background: linear-gradient(160deg, rgba(255, 90, 95, 0.22), rgba(255, 255, 255, 0.06));
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.shot--phone {
+  position: absolute;
+  left: 24.9%;
+  top: 7.3%;
+  width: 50.2%;
+  aspect-ratio: 322 / 662;
+}
+
+.shot--hero {
+  position: absolute;
+  top: 12%;
+  width: 22%;
+  aspect-ratio: 290 / 572;
+}
+
+.shot--l { left: 29%; }
+.shot--r { left: 49%; top: 22%; }
+
+.shot--abs {
+  position: absolute;
+  width: 22.14%; /* 290.5 / 1312 */
+  aspect-ratio: 290.5 / 572.2;
+}
+
+/* ---------- Больше проектов ---------- */
+
+.case-more__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 52px;
+}
+
+.tag--link {
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.tag--link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+.case-more .project {
+  max-width: 642px;
+}
+
+.case-more .project__title {
+  margin-top: 20px;
+}
+
+.case-more .tags {
+  margin-top: 16px;
+}
+
+.case-more__media {
+  cursor: default;
+}
+
+/* ---------- Контакты на странице кейса ---------- */
+
+.contacts {
+  padding-top: var(--block-gap);
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 1100px) {
+  .pill {
+    height: 44px;
+    padding: 0 20px;
+    font-size: 14px;
+  }
+  .pill--back {
+    padding-left: 16px;
+  }
+}
+
+@media (max-width: 860px) {
+  .case-hero {
+    padding-top: 130px;
+  }
+  .case-title {
+    font-size: 32px;
+  }
+  .case-title__icon {
+    width: 32px;
+    height: 34px;
+  }
+  .case-split,
+  .case-pair {
+    grid-template-columns: 1fr;
+  }
+  .case-split {
+    gap: 24px;
+  }
+  .case-lead {
+    font-size: 26px;
+    line-height: 1.4;
+  }
+  .case-body {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+  .icon-row {
+    gap: 8px;
+  }
+  .icon-tile {
+    border-radius: 14px;
+  }
+}
+
+/* Якорь ставит заголовок блока на 120px от верха (ниже шапки) */
+.case-section.section {
+  scroll-margin-top: 0;
+}
+
+/* Оранжевый акцент в тексте (цвет из макета) */
+.accent-orange {
+  color: var(--orange);
+}
+
+/* Карточки с готовыми изображениями: подложка — белый 4%, как в макете */
+.card:has(> img) {
+  background: var(--card);
+}
+
+.card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

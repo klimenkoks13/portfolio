@@ -1,0 +1,775 @@
+/* ==========================================================================
+   Аня Шуйская — главная страница
+   ========================================================================== */
+
+:root {
+  --bg: #0f0e0e;
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --text-soft: rgba(255, 255, 255, 0.6);
+  --accent: #ff5a5f;
+  --card: rgba(255, 255, 255, 0.04);
+  --radius: 30px;
+  --container: 1312px;
+  --header-h: 56px;
+  --header-top: 42px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ---------- Layout ---------- */
+
+.section {
+  position: relative;
+  scroll-margin-top: 120px;
+}
+
+.container {
+  width: min(100% - 128px, var(--container));
+  margin-inline: auto;
+}
+
+.heading {
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.085px;
+  color: var(--text);
+}
+
+.heading--sub {
+  font-size: 32px;
+  letter-spacing: -0.08px;
+}
+
+.heading--small {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.09px;
+  margin-bottom: 24px;
+}
+
+/* ---------- Header (фиксирована сверху) ---------- */
+
+/* Полупрозрачная градиентная полоса-подложка под шапкой */
+.site-header-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 114px;
+  z-index: 99;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  background: linear-gradient(
+    to bottom,
+    rgba(31, 5, 6, 0.55) 0%,
+    rgba(15, 14, 14, 0) 100%
+  );
+}
+
+.site-header {
+  position: fixed;
+  top: var(--header-top);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: min(100% - 128px, var(--container));
+  margin-inline: auto;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.site-header > * {
+  pointer-events: auto;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  transition: opacity 0.3s var(--ease);
+}
+
+.logo:hover {
+  opacity: 0.75;
+}
+
+.nav {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: var(--header-h);
+  padding: 0 28px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  font-size: 16px;
+  letter-spacing: -0.08px;
+  white-space: nowrap;
+}
+
+.nav__link {
+  color: var(--text-muted);
+  transition: color 0.35s var(--ease);
+}
+
+.nav__link:hover {
+  color: var(--text);
+}
+
+.nav__link.is-active {
+  color: var(--accent);
+}
+
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 28px;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--text);
+  font-size: 16px;
+  letter-spacing: 0.08px;
+  white-space: nowrap;
+  transition: transform 0.3s var(--ease), filter 0.3s var(--ease);
+}
+
+.btn-cv:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+/* Группа справа в шапке: кнопка CV (+ бургер на мобильной версии) */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-cv__short,
+.burger,
+.site-footer-fade {
+  display: none;
+}
+
+.burger {
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  color: var(--text);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.burger__icon--close {
+  display: none;
+}
+
+/* ---------- Hero ---------- */
+
+/* Вся композиция собрана на сцене 1440×960 (как в макете) и масштабируется
+   пропорционально ширине экрана (но не больше 1440px): --u = 1 «пиксель макета». */
+.hero {
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+  background: radial-gradient(
+    ellipse 90% 60% at 50% 0%,
+    rgba(31, 5, 6, 1) 0%,
+    rgba(11, 11, 11, 1) 100%
+  );
+  text-align: center;
+}
+
+.hero__stage {
+  --u: calc(min(100cqw, 1440px) / 1440);
+  position: relative;
+  width: calc(var(--u) * 1440);
+  height: calc(var(--u) * 960);
+  margin-inline: auto;
+}
+
+/* Заголовок и декоративные фигуры лежат в одном слое позади фото */
+.hero__title {
+  position: absolute;
+  left: 0;
+  top: calc(var(--u) * 162);
+  z-index: 1;
+  width: 100%;
+  font-size: calc(var(--u) * 128);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.0025em;
+  white-space: nowrap;
+}
+
+.hero__shape {
+  position: absolute;
+  z-index: 1;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero__shape--asterisk {
+  left: calc(var(--u) * 98);
+  top: calc(var(--u) * 677);
+  width: calc(var(--u) * 330);
+}
+
+.hero__shape--flower {
+  left: calc(var(--u) * 916);
+  top: calc(var(--u) * 550);
+  width: calc(var(--u) * 437);
+}
+
+/* Фото — поверх текста и фигур, с нахлёстом, как в макете */
+.hero__figure {
+  position: absolute;
+  left: calc(var(--u) * 135);
+  top: calc(var(--u) * 98);
+  z-index: 2;
+  width: calc(var(--u) * 1142);
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- Обо мне ---------- */
+
+.about {
+  background: var(--bg);
+  padding: 120px 0 0;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.about__text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 24px;
+  color: var(--text-muted);
+}
+
+.about__text p {
+  line-height: 1.4;
+}
+
+.about__lead {
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.085px;
+  color: var(--text);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/* ---------- Проекты ---------- */
+
+.projects {
+  padding: 150px 0 80px;
+}
+
+.projects__grid {
+  margin-top: 88px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.project__title a {
+  transition: color 0.3s var(--ease);
+}
+
+.project__title a:hover {
+  color: var(--accent);
+}
+
+.project__title {
+  margin-top: 24px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Общий контейнер для картинки: обрезает масштаб по рамке */
+.media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+  will-change: transform;
+}
+
+.media:hover img {
+  transform: scale(1.05);
+}
+
+.media--square {
+  aspect-ratio: 1 / 1;
+}
+
+.media--tall {
+  aspect-ratio: 642 / 779;
+}
+
+.media--wip {
+  background: #2a3fa8;
+}
+
+.tags {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tag {
+  padding: 6px 16px 8px;
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--text-soft);
+  font-size: 20px;
+  letter-spacing: 0.1px;
+  line-height: 1.3;
+}
+
+/* ---------- Концепты ---------- */
+
+.concepts {
+  padding: 40px 0 0;
+}
+
+/* Неровная «кирпичная» сетка: два независимых столбца,
+   в каждом — одна высокая и одна квадратная карточка в своём порядке. */
+.concepts__grid {
+  margin-top: 40px;
+  display: flex;
+  gap: 28px;
+}
+
+.concepts__col {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+  gap: 28px;
+}
+
+.concept {
+  margin: 0;
+  position: relative;
+}
+
+.concept .media {
+  background: #1d1d1d;
+}
+
+/* Подпись — отдельный слой поверх фото, не вложена в <img>,
+   поэтому не увеличивается вместе с ним при наведении. */
+.media__label {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  z-index: 2;
+  font-size: 20px;
+  letter-spacing: 0.1px;
+  line-height: 1.3;
+  color: var(--text-soft);
+  pointer-events: none;
+}
+
+.media__label--dark {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- Контакты ---------- */
+
+.contacts {
+  padding: 120px 0 120px;
+}
+
+.contacts__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.contacts__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 24px;
+  line-height: 34px;
+  color: var(--text-muted);
+}
+
+.contacts__list a {
+  display: inline-block;
+  transition: color 0.3s var(--ease);
+}
+
+.contacts__list a:hover {
+  color: #ff5a5f;
+}
+
+/* ---------- Адаптив: только базовые правки для узких экранов ---------- */
+
+@media (max-width: 1100px) {
+  .nav {
+    gap: 16px;
+    padding: 0 18px;
+    font-size: 14px;
+  }
+  .btn-cv {
+    height: 44px;
+    padding: 0 20px;
+    font-size: 14px;
+  }
+}
+
+/* ---------- Мобильная версия (макет 393px) ---------- */
+
+@media (max-width: 860px) {
+  :root {
+    --header-top: 62px;
+    --header-h: 44px;
+    --radius: 30px;
+    --radius-card: 16.869px;
+  }
+
+  .container {
+    width: min(100% - 32px, var(--container));
+  }
+
+  /* Заголовки разделов */
+  .heading,
+  .heading--sub,
+  .heading--small {
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: -0.05px;
+  }
+
+  .heading--small {
+    margin-bottom: 12px;
+  }
+
+  /* --- Шапка --- */
+  .site-header-bg {
+    height: 106px;
+  }
+
+  .site-header {
+    width: min(100% - 32px, var(--container));
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .btn-cv {
+    justify-content: center;
+    width: 56px;
+    height: 44px;
+    padding: 0;
+    font-size: 14px;
+    letter-spacing: 0.07px;
+  }
+
+  .btn-cv__full {
+    display: none;
+  }
+
+  .btn-cv__short {
+    display: inline;
+  }
+
+  .burger {
+    display: inline-flex;
+  }
+
+  .site-header.is-open .burger__icon--open {
+    display: none;
+  }
+
+  .site-header.is-open .burger__icon--close {
+    display: block;
+  }
+
+  /* Навигация превращается в выпадающее меню под бургером */
+  .nav {
+    position: fixed;
+    top: calc(var(--header-top) + var(--header-h) + 8px);
+    left: 16px;
+    right: 16px;
+    transform: translateY(-8px);
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px;
+    border-radius: 24px;
+    background: rgba(22, 22, 22, 0.92);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    font-size: 18px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0s linear 0.3s;
+  }
+
+  .site-header.is-open .nav {
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0s;
+  }
+
+  .nav__link {
+    padding: 14px 16px;
+    border-radius: 16px;
+  }
+
+  .nav__link.is-active {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* --- Hero: сцена 393×815, масштабируется по ширине (не шире 600px) --- */
+  .hero__stage {
+    --u: calc(min(100cqw, 600px) / 393);
+    width: calc(var(--u) * 393);
+    height: calc(var(--u) * 815);
+  }
+
+  .hero__title {
+    top: calc(var(--u) * 158);
+    font-size: calc(var(--u) * 40);
+    letter-spacing: -0.0025em;
+  }
+
+  .hero__shape--asterisk {
+    left: calc(var(--u) * -82);
+    top: calc(var(--u) * 426);
+    width: calc(var(--u) * 212);
+    transform: rotate(15deg);
+  }
+
+  .hero__shape--flower {
+    left: calc(var(--u) * 281);
+    top: calc(var(--u) * 360);
+    width: calc(var(--u) * 184);
+  }
+
+  .hero__figure {
+    left: calc(var(--u) * -183);
+    top: calc(var(--u) * 247);
+    width: calc(var(--u) * 758);
+    height: calc(var(--u) * 580);
+    object-fit: fill;
+  }
+
+  /* --- Обо мне --- */
+  .about {
+    padding: 36px 0 0;
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .about__text {
+    gap: 24px;
+    font-size: 16px;
+    letter-spacing: -0.08px;
+  }
+
+  .about__lead {
+    font-size: 20px;
+    letter-spacing: -0.05px;
+  }
+
+  /* --- Проекты --- */
+  .projects {
+    padding: 4px 0 0;
+  }
+
+  .projects__grid {
+    margin-top: 23px;
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .project__title {
+    margin-top: 16px;
+    font-size: 20px;
+  }
+
+  .tags {
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 14px;
+    letter-spacing: 0.07px;
+  }
+
+  /* Все фото в проектах и концептах — квадратные */
+  .media {
+    border-radius: var(--radius-card);
+  }
+
+  .media--square,
+  .media--tall {
+    aspect-ratio: 1 / 1;
+  }
+
+  /* --- Концепты: один столбец, карточки идут подряд --- */
+  .concepts {
+    padding: 36px 0 0;
+  }
+
+  .concepts__grid {
+    margin-top: 36px;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .concepts__col {
+    display: contents;
+  }
+
+  .media__label {
+    top: 12px;
+    left: 14px;
+    font-size: 14px;
+    letter-spacing: 0.07px;
+  }
+
+  /* --- Контакты --- */
+  .contacts {
+    padding: 36px 0 36px;
+  }
+
+  .contacts__grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .contacts__list {
+    gap: 12px;
+    font-size: 15px;
+    line-height: 1.4;
+    letter-spacing: 0.075px;
+  }
+
+  /* --- Постоянный фиксированный градиент снизу экрана --- */
+  .site-footer-fade {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(56px + env(safe-area-inset-bottom, 0px));
+    z-index: 99;
+    pointer-events: none;
+    background: linear-gradient(to top, #0f0e0e 0%, rgba(15, 14, 14, 0) 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .media img,
+  .nav__link,
+  .btn-cv,
+  .contacts__list a {
+    transition: none;
+  }
+  .media:hover img {
+    transform: none;
+  }
+}
