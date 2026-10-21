@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/cursor.css">
 </head>
 <body>
 
@@ -30,16 +31,12 @@
         <span class="btn-cv__full">Смотреть CV</span>
         <span class="btn-cv__short" aria-hidden="true">CV</span>
       </a>
-
-      <button type="button" class="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
-        <svg class="burger__icon burger__icon--open" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <svg class="burger__icon burger__icon--close" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <button type="button" class="btn-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <svg class="btn-burger__icon btn-burger__icon--open" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="btn-burger__icon btn-burger__icon--close" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 18 18 6M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
   </header>
-
-  <!-- Фиксированный градиент снизу экрана (только мобильная версия) -->
-  <div class="site-footer-fade" aria-hidden="true"></div>
 
   <main>
 
@@ -62,11 +59,11 @@
         <h2 class="heading">Обо мне</h2>
         <div class="about__text">
           <p class="about__lead">
-            Привет, меня зовут <span class="accent">Аня Шуйская,</span>
-            я продуктовый UI/UX-дизайнер в сфере B2C, B2E
+            Привет, меня зовут <span class="accent">Аня Шуйская,</span><br class="br-mobile">
+            я продуктовый UI/UX-дизайнер<br class="br-mobile"> в сфере B2C, B2E
           </p>
           <p>
-            Работаю в доменах travel, Media&amp;Entertainment, E-commerce, AI-продукты. Работала с мобильными сервисами, сайтами (IOS, Android, Web). Прорабатываю пользовательские сценарии, информационную архитектуру и интерфейсы, сопровождая продукт от исследования до передачи в разработку.
+            Работаю в доменах travel, Media &amp; Entertainment, E-commerce, AI-продукты. Работала с мобильными сервисами, сайтами (IOS, Android, Web). Прорабатываю пользовательские сценарии, информационную архитектуру и интерфейсы, сопровождая продукт от исследования до передачи в разработку.
           </p>
         </div>
       </div>
@@ -82,7 +79,7 @@
             <a href="case-hotel-booking.html" class="media media--square">
               <img src="assets/hotel-booking.png" alt="Экраны приложения бронирования отелей">
             </a>
-            <h3 class="project__title"><a href="case-hotel-booking.html">Бронирование отелей с умным помощником</a></h3>
+            <h3 class="project__title"><a href="case-hotel-booking.html">Бронирование отелей с умным<br class="br-mobile"> помощником</a></h3>
             <ul class="tags">
               <li class="tag">B2C</li>
               <li class="tag">Mobile iOS</li>
@@ -94,7 +91,7 @@
             <a href="#" class="media media--square media--wip">
               <img src="assets/wip-project.png" alt="Проект в разработке">
             </a>
-            <h3 class="project__title">Единая база документации с AI-функциями</h3>
+            <h3 class="project__title">Единая база документации<br class="br-mobile"> с AI-функциями</h3>
             <ul class="tags">
               <li class="tag">B2E</li>
               <li class="tag">Web app</li>
@@ -113,7 +110,7 @@
         <div class="concepts__grid">
           <div class="concepts__col">
             <figure class="concept">
-              <div class="media media--tall">
+              <div class="media media--tall media--dragon">
                 <img src="assets/concept-streaming-dragon.png" alt="Концепт стриминг-приложения, карточка сериала">
                 <span class="media__label">Streaming app</span>
               </div>
@@ -150,7 +147,7 @@
         <div>
           <h2 class="heading heading--small">Контакты</h2>
           <ul class="contacts__list">
-            <li><a href="https://t.me/" target="_blank" rel="noopener">Телеграм личный</a></li>
+            <li><a href="https://t.me/berrtizzz" target="_blank" rel="noopener">Телеграм личный</a></li>
             <li><a href="mailto:berrtizzz@mail.ru">berrtizzz@mail.ru</a></li>
           </ul>
         </div>
@@ -158,9 +155,9 @@
         <div>
           <h2 class="heading heading--small">Соцсети</h2>
           <ul class="contacts__list">
-            <li><a href="https://t.me/" target="_blank" rel="noopener">Телеграм канал</a></li>
-            <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">Linkedin</a></li>
-            <li><a href="https://dribbble.com/" target="_blank" rel="noopener">Dribbble</a></li>
+            <li><a href="https://t.me/ashuiskayaa" target="_blank" rel="noopener">Телеграм канал</a></li>
+            <li><a href="https://www.linkedin.com/in/аня-шуйская-9316ab3b3?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener">Linkedin</a></li>
+            <li><a href="https://dribbble.com/ShuiskayaBlin" target="_blank" rel="noopener">Dribbble</a></li>
           </ul>
         </div>
       </div>
@@ -169,5 +166,6 @@
   </main>
 
   <script src="js/main.js"></script>
+  <script src="js/cursor.js"></script>
 </body>
 </html>

@@ -10,8 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/case.css">
+  <link rel="stylesheet" href="css/cursor.css">
 </head>
-<body>
+<body class="page-case">
 
   <div class="site-header-bg" aria-hidden="true"></div>
 
@@ -21,14 +22,23 @@
       Назад
     </a>
 
-    <nav class="nav" aria-label="Навигация по кейсу">
+    <nav class="nav" id="site-nav" aria-label="Навигация по кейсу">
       <a href="#task" class="nav__link" data-section="task">Задача</a>
       <a href="#process" class="nav__link" data-section="process">Процесс</a>
       <a href="#visual" class="nav__link" data-section="visual">Визуал</a>
       <a href="#result" class="nav__link" data-section="result">Результат</a>
     </nav>
 
-    <a href="assets/cv-anna-shuiskaya.pdf" class="pill" target="_blank" rel="noopener">Смотреть CV</a>
+    <div class="header-actions">
+      <a href="assets/cv-anna-shuiskaya.pdf" class="pill pill--cv" target="_blank" rel="noopener" aria-label="Смотреть CV">
+        <span class="btn-cv__full">Смотреть CV</span>
+        <span class="btn-cv__short" aria-hidden="true">CV</span>
+      </a>
+      <button type="button" class="btn-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <svg class="btn-burger__icon btn-burger__icon--open" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="btn-burger__icon btn-burger__icon--close" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 18 18 6M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
   </header>
 
   <main>
@@ -49,7 +59,7 @@
       </ul>
 
       <div class="container">
-        <div class="card card--wide"><img src="assets/case/hero.webp" alt="Экраны приложения: карточка отеля и список вариантов" width="2624" height="1702" decoding="async"></div>
+        <div class="card card--wide"><picture><source media="(max-width: 600px)" srcset="assets/case/m/hero.webp"><img src="assets/case/hero.webp" alt="Экраны приложения: карточка отеля и список вариантов" width="2624" height="1702" decoding="async"></picture></div>
       </div>
     </section>
 
@@ -67,6 +77,7 @@
           <div class="card card--tall"><img src="assets/case/task-1.webp" alt="Экран поиска отеля с описанием «отель мечты»" width="1284" height="1558" loading="lazy" decoding="async"></div>
           <div class="card card--tall"><img src="assets/case/task-2.webp" alt="Умный помощник на карте: запрос в свободной форме" width="1284" height="1558" loading="lazy" decoding="async"></div>
         </div>
+        <div class="card card--m"><img src="assets/case/m/task.webp" alt="Экран поиска отеля и умный помощник на карте" width="722" height="722" loading="lazy" decoding="async"></div>
       </div>
     </section>
 
@@ -89,11 +100,12 @@
             </ul>
           </div>
         </div>
-        <div class="card card--wide card--process"><img src="assets/case/process-wide.webp" alt="Экраны приложения: карта с ценами и главная" width="2624" height="1702" loading="lazy" decoding="async"></div>
+        <div class="card card--wide card--process"><picture><source media="(max-width: 600px)" srcset="assets/case/m/process-wide.webp"><img src="assets/case/process-wide.webp" alt="Экраны приложения: карта с ценами и главная" width="2624" height="1702" loading="lazy" decoding="async"></picture></div>
         <div class="case-pair">
           <div class="card card--tall"><img src="assets/case/process-1.webp" alt="Экран профиля с кешбэком" width="1284" height="1558" loading="lazy" decoding="async"></div>
           <div class="card card--tall"><img src="assets/case/process-2.webp" alt="Экран отзывов гостей об отеле" width="1284" height="1558" loading="lazy" decoding="async"></div>
         </div>
+        <div class="card card--m card--m-tight"><img src="assets/case/m/process.webp" alt="Экраны профиля с кешбэком и отзывов гостей об отеле" width="722" height="722" loading="lazy" decoding="async"></div>
       </div>
     </section>
 
@@ -120,6 +132,7 @@
           <div class="card card--tall"><img src="assets/case/visual-1.webp" alt="Иллюстрация «Недостаточно средств»" width="1284" height="1558" loading="lazy" decoding="async"></div>
           <div class="card card--tall"><img src="assets/case/visual-2.webp" alt="Иллюстрация «Что-то пошло не так»" width="1284" height="1558" loading="lazy" decoding="async"></div>
         </div>
+        <div class="card card--m"><img src="assets/case/m/visual.webp" alt="Экраны «Недостаточно средств» и «Что-то пошло не так»" width="722" height="722" loading="lazy" decoding="async"></div>
       </div>
     </section>
 
@@ -129,11 +142,11 @@
         <div class="case-split">
           <h2 class="heading heading--tall">Результат</h2>
           <div class="case-split__text">
-            <p class="case-lead"><span class="accent-orange">Подготовила MVP</span> к запуску: спроектировала ключевые пользовательские сценарии,</p>
+            <p class="case-lead"><span class="accent-orange">Подготовила MVP</span> к запуску:<br class="br-mobile"> спроектировала ключевые пользовательские сценарии,</p>
             <p class="case-body">провела UX-тестирования и доработала интерфейс на основе обратной связи. В результате создала сервис, который ускоряет процесс бронирования отелей</p>
           </div>
         </div>
-        <div class="card card--collage"><img src="assets/case/result-collage.webp" alt="Все ключевые экраны приложения" width="2624" height="1730" loading="lazy" decoding="async"></div>
+        <div class="card card--collage"><picture><source media="(max-width: 600px)" srcset="assets/case/m/result.webp"><img src="assets/case/result-collage.webp" alt="Все ключевые экраны приложения" width="2624" height="1730" loading="lazy" decoding="async"></picture></div>
       </div>
     </section>
 
@@ -142,13 +155,13 @@
       <div class="container">
         <div class="case-more__head">
           <h2 class="heading">Больше проектов</h2>
-          <a href="index.html#projects" class="tag tag--link">Смотреть все</a>
+          <a href="index.html#projects" class="tag tag--link"><span class="tag__full">Смотреть все</span><span class="tag__short">Все</span></a>
         </div>
         <article class="project">
           <div class="media media--square media--wip case-more__media">
             <img src="assets/wip-project.png" alt="Проект в разработке">
           </div>
-          <h3 class="project__title">Единая база документации с AI-функциями</h3>
+          <h3 class="project__title">Единая база документации<br class="br-mobile"> с AI-функциями</h3>
           <ul class="tags">
             <li class="tag">B2E</li>
             <li class="tag">Web app</li>
@@ -164,7 +177,7 @@
         <div>
           <h2 class="heading heading--small">Контакты</h2>
           <ul class="contacts__list">
-            <li><a href="https://t.me/" target="_blank" rel="noopener">Телеграм личный</a></li>
+            <li><a href="https://t.me/berrtizzz" target="_blank" rel="noopener">Телеграм личный</a></li>
             <li><a href="mailto:berrtizzz@mail.ru">berrtizzz@mail.ru</a></li>
           </ul>
         </div>
@@ -172,9 +185,9 @@
         <div>
           <h2 class="heading heading--small">Соцсети</h2>
           <ul class="contacts__list">
-            <li><a href="https://t.me/" target="_blank" rel="noopener">Телеграм канал</a></li>
-            <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">Linkedin</a></li>
-            <li><a href="https://dribbble.com/" target="_blank" rel="noopener">Dribbble</a></li>
+            <li><a href="https://t.me/ashuiskayaa" target="_blank" rel="noopener">Телеграм канал</a></li>
+            <li><a href="https://www.linkedin.com/in/аня-шуйская-9316ab3b3?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener">Linkedin</a></li>
+            <li><a href="https://dribbble.com/ShuiskayaBlin" target="_blank" rel="noopener">Dribbble</a></li>
           </ul>
         </div>
       </div>
@@ -183,5 +196,6 @@
   </main>
 
   <script src="js/main.js"></script>
+  <script src="js/cursor.js"></script>
 </body>
 </html>

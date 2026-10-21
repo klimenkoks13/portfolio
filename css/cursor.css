@@ -1,0 +1,26 @@
+/* ==========================================================================
+   Обычный системный курсор. При клике из точки нажатия вылетают кружочки #EA6064.
+   ========================================================================== */
+
+:root {
+  --cursor-color: #ea6064;
+}
+
+/* Слой для кружочков (живут отдельно от страницы, клики не перехватывают) */
+.cursor-fx-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cursor-fx {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: var(--cursor-color);
+  pointer-events: none;
+  will-change: transform, opacity;
+}

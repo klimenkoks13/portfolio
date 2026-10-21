@@ -192,20 +192,19 @@ ul {
   filter: brightness(1.08);
 }
 
-/* Группа справа в шапке: кнопка CV (+ бургер на мобильной версии) */
+.btn-cv__short {
+  display: none;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.btn-cv__short,
-.burger,
-.site-footer-fade {
+/* Бургер: показывается только на узких экранах */
+.btn-burger {
   display: none;
-}
-
-.burger {
   align-items: center;
   justify-content: center;
   width: 56px;
@@ -221,8 +220,13 @@ ul {
   -webkit-tap-highlight-color: transparent;
 }
 
-.burger__icon--close {
+.btn-burger__icon--close,
+.btn-burger[aria-expanded="true"] .btn-burger__icon--open {
   display: none;
+}
+
+.btn-burger[aria-expanded="true"] .btn-burger__icon--close {
+  display: block;
 }
 
 /* ---------- Hero ---------- */
@@ -327,6 +331,10 @@ ul {
   font-weight: 600;
   letter-spacing: -0.085px;
   color: var(--text);
+}
+
+.br-mobile {
+  display: none;
 }
 
 .accent {
@@ -506,44 +514,92 @@ ul {
   }
 }
 
-/* ---------- Мобильная версия (макет 393px) ---------- */
+/* Шапка с бургером: планшет (вертикальный) и телефон */
+@media (max-width: 1024px) {
+  .site-header {
+    width: min(100% - 32px, var(--container));
+  }
 
-@media (max-width: 860px) {
-  :root {
-    --header-top: 62px;
-    --header-h: 44px;
-    --radius: 30px;
-    --radius-card: 16.869px;
+  .btn-burger {
+    display: inline-flex;
+  }
+
+  /* Навигация превращается в выпадающее меню под шапкой */
+  .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    left: 0;
+    right: 0;
+    top: calc(100% + 8px);
+    height: auto;
+    padding: 8px;
+    transform: translateY(-8px);
+    border-radius: 24px;
+    background: rgba(24, 22, 22, 0.92);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    font-size: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0s linear 0.3s;
+  }
+
+  .site-header.is-open .nav {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  .nav__link {
+    padding: 14px 16px;
+    border-radius: 16px;
+  }
+
+  .nav__link:active {
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .container {
     width: min(100% - 32px, var(--container));
   }
+}
 
-  /* Заголовки разделов */
-  .heading,
-  .heading--sub,
-  .heading--small {
-    font-size: 20px;
-    line-height: 1.4;
-    letter-spacing: -0.05px;
+/* Одна колонка — только телефон */
+@media (max-width: 600px) {
+  .about__grid,
+  .projects__grid,
+  .contacts__grid {
+    grid-template-columns: 1fr;
+  }
+  .concepts__grid {
+    flex-direction: column;
+  }
+}
+
+/* ---------- Планшет, вертикальная ориентация (макет 834px) ----------
+   Поля 16, расстояние между блоками 48, две колонки по 393 с зазором 16.
+   Шрифты: заголовки блоков 24, основной текст 18, теги/подписи 14. */
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  :root {
+    --header-top: 36px;
+    --header-h: 44px;
   }
 
-  .heading--small {
-    margin-bottom: 12px;
+  .section {
+    scroll-margin-top: 44px;
   }
 
-  /* --- Шапка --- */
+  /* Шапка: логотип слева, «CV» и бургер справа (56×44) */
   .site-header-bg {
-    height: 106px;
-  }
-
-  .site-header {
-    width: min(100% - 32px, var(--container));
+    height: 80px;
   }
 
   .logo {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .btn-cv {
@@ -553,6 +609,7 @@ ul {
     padding: 0;
     font-size: 14px;
     letter-spacing: 0.07px;
+    line-height: 1.3;
   }
 
   .btn-cv__full {
@@ -563,76 +620,267 @@ ul {
     display: inline;
   }
 
-  .burger {
-    display: inline-flex;
+  /* Выпадающее меню — компактная панель справа под шапкой */
+  .nav {
+    left: auto;
+    right: 0;
+    width: 320px;
   }
 
-  .site-header.is-open .burger__icon--open {
+  /* Заголовки блоков */
+  .heading,
+  .heading--sub,
+  .heading--small {
+    font-size: 24px;
+    line-height: 1.3;
+    letter-spacing: -0.06px;
+  }
+
+  .heading--small {
+    margin-bottom: 16px;
+  }
+
+  /* Hero: сцена 834×1178, 1u = 1px макета, масштабируется по ширине экрана */
+  .hero {
+    background: radial-gradient(
+      ellipse 61.75% 177.75% at 50% 17%,
+      rgba(31, 5, 6, 1) 0%,
+      rgba(11, 11, 11, 1) 100%
+    );
+  }
+
+  .hero__stage {
+    --u: calc(100cqw / 834);
+    width: 100%;
+    height: calc(var(--u) * 1178);
+  }
+
+  /* Красное свечение за фигурой */
+  .hero__stage::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--u) * -103);
+    top: calc(var(--u) * 132);
+    width: calc(var(--u) * 1040);
+    height: calc(var(--u) * 960);
+    background: radial-gradient(
+      ellipse 50% 50% at 50% 50%,
+      rgba(95, 14, 18, 0.45) 0%,
+      rgba(95, 14, 18, 0) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Заголовок центрирован относительно фото (центр фото — x=404) */
+  .hero__title {
+    left: calc(var(--u) * 404);
+    top: calc(var(--u) * 132);
+    width: max-content;
+    transform: translateX(-50%);
+    font-size: calc(var(--u) * 64);
+    letter-spacing: -0.0025em;
+  }
+
+  .hero__shape--asterisk {
+    left: calc(var(--u) * -9);
+    top: calc(var(--u) * 677);
+    width: calc(var(--u) * 330);
+  }
+
+  .hero__shape--flower {
+    left: calc(var(--u) * 571);
+    top: calc(var(--u) * 550);
+    width: calc(var(--u) * 437);
+  }
+
+  .hero__figure {
+    left: calc(var(--u) * -193);
+    top: calc(var(--u) * 264);
+    width: calc(var(--u) * 1194);
+    height: calc(var(--u) * 914);
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
+  /* Обо мне */
+  .about {
+    padding: 48px 0 0;
+  }
+
+  .about__grid {
+    gap: 16px;
+  }
+
+  .about__text {
+    gap: 24px;
+    font-size: 18px;
+  }
+
+  .about__lead {
+    font-size: 24px;
+    letter-spacing: -0.06px;
+  }
+
+  .about__lead .br-mobile {
+    display: inline;
+  }
+
+  /* Проекты */
+  .projects {
+    padding: 48px 0 0;
+  }
+
+  .projects__grid {
+    margin-top: 32px;
+    gap: 16px;
+  }
+
+  .media {
+    border-radius: 24px;
+  }
+
+  .project__title {
+    margin-top: 16px;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .tags {
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 14px;
+    letter-spacing: 0.07px;
+    line-height: 1.3;
+  }
+
+  /* Концепты */
+  .concepts {
+    padding: 48px 0 0;
+  }
+
+  .concepts__grid {
+    margin-top: 32px;
+    gap: 16px;
+  }
+
+  .concepts__col {
+    gap: 16px;
+  }
+
+  .media__label {
+    top: 12px;
+    left: 14px;
+    font-size: 14px;
+    letter-spacing: 0.07px;
+  }
+
+  /* Контакты */
+  .contacts {
+    padding: 48px 0;
+  }
+
+  .contacts__grid {
+    gap: 16px;
+  }
+
+  .contacts__list {
+    gap: 16px;
+    font-size: 18px;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+}
+
+/* ---------- Мобильная версия (макет 393px) ---------- */
+
+@media (max-width: 600px) {
+  :root {
+    --header-top: 36px;
+    --header-h: 44px;
+  }
+
+  .section {
+    scroll-margin-top: 44px;
+  }
+
+  /* Шапка: логотип слева, «CV» и бургер справа */
+  .site-header-bg {
+    height: 80px;
+  }
+
+  .logo {
+    position: relative;
+    top: 1.5px;
+    font-size: 16px;
+  }
+
+  .btn-cv {
+    justify-content: center;
+    width: 56px;
+    height: 44px;
+    padding: 0;
+    font-size: 14px;
+    letter-spacing: 0.07px;
+    line-height: 1.3;
+  }
+
+  .btn-cv__full {
     display: none;
   }
 
-  .site-header.is-open .burger__icon--close {
-    display: block;
+  .btn-cv__short {
+    display: inline;
   }
 
-  /* Навигация превращается в выпадающее меню под бургером */
   .nav {
-    position: fixed;
-    top: calc(var(--header-top) + var(--header-h) + 8px);
-    left: 16px;
-    right: 16px;
-    transform: translateY(-8px);
-    height: auto;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 8px;
-    border-radius: 24px;
-    background: rgba(22, 22, 22, 0.92);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    font-size: 18px;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0s linear 0.3s;
+    top: calc(100% + 8px);
   }
 
-  .site-header.is-open .nav {
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0s;
+  /* Hero: сцена 393×815, 1u = 1px макета и масштабируется по ширине экрана */
+  .hero {
+    background: radial-gradient(
+      ellipse 68% 283px at 50% 0,
+      rgba(31, 5, 6, 1) 0%,
+      rgba(11, 11, 11, 1) 100%
+    );
   }
 
-  .nav__link {
-    padding: 14px 16px;
-    border-radius: 16px;
-  }
-
-  .nav__link.is-active {
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  /* --- Hero: сцена 393×815, масштабируется по ширине (не шире 600px) --- */
   .hero__stage {
-    --u: calc(min(100cqw, 600px) / 393);
-    width: calc(var(--u) * 393);
+    --u: calc(100cqw / 393);
+    width: 100%;
     height: calc(var(--u) * 815);
   }
 
+  /* Красное свечение за фигурой */
+  .hero__stage::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--u) * -60);
+    top: calc(var(--u) * 180);
+    width: calc(var(--u) * 513);
+    height: calc(var(--u) * 640);
+    background: radial-gradient(
+      ellipse 50% 50% at 50% 50%,
+      rgba(95, 14, 18, 0.55) 0%,
+      rgba(95, 14, 18, 0) 100%
+    );
+    pointer-events: none;
+  }
+
   .hero__title {
-    top: calc(var(--u) * 158);
+    top: calc(var(--u) * 132);
     font-size: calc(var(--u) * 40);
     letter-spacing: -0.0025em;
   }
 
   .hero__shape--asterisk {
-    left: calc(var(--u) * -82);
-    top: calc(var(--u) * 426);
-    width: calc(var(--u) * 212);
-    transform: rotate(15deg);
+    left: calc(var(--u) * -83);
+    top: calc(var(--u) * 422);
+    width: calc(var(--u) * 211.65);
+    transform: rotate(15.02deg);
   }
 
   .hero__shape--flower {
@@ -642,20 +890,28 @@ ul {
   }
 
   .hero__figure {
-    left: calc(var(--u) * -183);
-    top: calc(var(--u) * 247);
-    width: calc(var(--u) * 758);
-    height: calc(var(--u) * 580);
-    object-fit: fill;
+    left: calc(var(--u) * -203);
+    top: calc(var(--u) * 216);
+    width: calc(var(--u) * 798);
+    height: calc(var(--u) * 611);
+    object-fit: cover;
+    object-position: center bottom;
   }
 
-  /* --- Обо мне --- */
+  /* Заголовки разделов: 20px, 36 сверху, 24 снизу */
+  .heading,
+  .heading--sub,
+  .heading--small {
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: -0.05px;
+  }
+
   .about {
     padding: 36px 0 0;
   }
 
   .about__grid {
-    grid-template-columns: 1fr;
     gap: 36px;
   }
 
@@ -665,24 +921,38 @@ ul {
     letter-spacing: -0.08px;
   }
 
+  .about__text p {
+    line-height: 22px;
+  }
+
+  .about__text .about__lead {
+    line-height: 1.4;
+  }
+
   .about__lead {
     font-size: 20px;
     letter-spacing: -0.05px;
   }
 
-  /* --- Проекты --- */
   .projects {
-    padding: 4px 0 0;
+    padding: 36px 0 0;
   }
 
   .projects__grid {
-    margin-top: 23px;
-    grid-template-columns: 1fr;
+    margin-top: 24px;
     gap: 36px;
   }
 
+  .media {
+    border-radius: 16px;
+  }
+
+  .media--tall {
+    aspect-ratio: 1 / 1;
+  }
+
   .project__title {
-    margin-top: 16px;
+    margin-top: 16.5px;
     font-size: 20px;
   }
 
@@ -694,31 +964,41 @@ ul {
   .tag {
     font-size: 14px;
     letter-spacing: 0.07px;
+    line-height: 18px;
   }
 
-  /* Все фото в проектах и концептах — квадратные */
-  .media {
-    border-radius: var(--radius-card);
-  }
-
-  .media--square,
-  .media--tall {
-    aspect-ratio: 1 / 1;
-  }
-
-  /* --- Концепты: один столбец, карточки идут подряд --- */
   .concepts {
     padding: 36px 0 0;
   }
 
   .concepts__grid {
-    margin-top: 36px;
-    flex-direction: column;
+    margin-top: 24px;
     gap: 16px;
   }
 
   .concepts__col {
-    display: contents;
+    gap: 16px;
+  }
+
+  .br-mobile {
+    display: inline;
+  }
+
+  .media--tall img {
+    object-position: 50% 35%;
+  }
+
+  /* Стриминг-карточка: телефон чуть меньше, чтобы подпись не наезжала на него */
+  .concept .media--dragon {
+    background: #171817;
+  }
+
+  .media--dragon img {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: auto;
   }
 
   .media__label {
@@ -728,14 +1008,16 @@ ul {
     letter-spacing: 0.07px;
   }
 
-  /* --- Контакты --- */
   .contacts {
-    padding: 36px 0 36px;
+    padding: 36px 0;
   }
 
   .contacts__grid {
-    grid-template-columns: 1fr;
     gap: 36px;
+  }
+
+  .heading--small {
+    margin-bottom: 12px;
   }
 
   .contacts__list {
@@ -743,19 +1025,6 @@ ul {
     font-size: 15px;
     line-height: 1.4;
     letter-spacing: 0.075px;
-  }
-
-  /* --- Постоянный фиксированный градиент снизу экрана --- */
-  .site-footer-fade {
-    display: block;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: calc(56px + env(safe-area-inset-bottom, 0px));
-    z-index: 99;
-    pointer-events: none;
-    background: linear-gradient(to top, #0f0e0e 0%, rgba(15, 14, 14, 0) 100%);
   }
 }
 

@@ -65,10 +65,10 @@
 })();
 
 
-// Мобильное меню (бургер): открытие/закрытие выпадающей навигации
+// Бургер-меню (мобильная версия): открывает и закрывает выпадающую навигацию
 (function () {
   const header = document.querySelector('.site-header');
-  const burger = document.querySelector('.burger');
+  const burger = document.querySelector('.btn-burger');
   if (!header || !burger) return;
 
   function setOpen(open) {
@@ -81,20 +81,15 @@
     setOpen(!header.classList.contains('is-open'));
   });
 
-  // Закрываем меню по клику на пункт, по Escape, по клику вне меню и при переходе на десктопную ширину
+  // Выбор пункта, клик вне меню, Escape и расширение окна закрывают меню
   header.querySelectorAll('.nav__link').forEach((link) => {
     link.addEventListener('click', () => setOpen(false));
   });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setOpen(false);
-  });
-
   document.addEventListener('click', (e) => {
     if (!header.contains(e.target)) setOpen(false);
   });
-
-  window.matchMedia('(min-width: 861px)').addEventListener('change', (e) => {
-    if (e.matches) setOpen(false);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
   });
+  window.matchMedia('(min-width: 1025px)').addEventListener('change', () => setOpen(false));
 })();
